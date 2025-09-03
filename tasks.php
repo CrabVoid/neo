@@ -1,21 +1,45 @@
 <?php
 $tasks = ["build a house", "create the universe", "bet on a horse"];
+
+function obtainTheTasks($tasks) {
+    foreach ($tasks as $task =>$nr) {
+        echo $task+1, " " ."$nr\n";
+    }
+}
+
+echo "var apskatīties visus uzdevumus ar 'all'\n";
+echo "var iziet ar 'exit'\n";
+echo "var apskatīties individuālus objektus ievadot ciparu'\n";
+echo "var pievienot uzdevumu ar 'add'\n";
+echo "var dzest uzdevumu ar 'delete'\n";
+
+
  while (true) {
     $input = readline("Ievade> ");
-    if ($input === "kys") {
+    if ($input === "exit") {
         break;
  } 
      switch ($input) {
-    case 0:
-        echo $tasks[0], "\n";
+    case "all":
+        (obtainTheTasks($tasks));
         break;
-    case 1:
-        echo $tasks[1], "\n";
+    case "add":
+        $newTask = readline("jauns uzdevumu> ");
+        array_push($tasks, $newTask);
+        echo "Uzdevums pievienots\n";
         break;
-    case 2:
-        echo $tasks[2], "\n";
+    case "delete":
+        $delTask = readline("kuru uzdevumu dzest? ievadi nr> ");
+        if (isset($tasks[$delTask])) {
+            unset($tasks[$delTask]);
+            echo "Uzdevums dzests\n";
+        }
+        break;    
+    case $input:
+        echo $tasks[$input], "\n";
         break;
     }
+    
 }
 #print_r($tasks);
 ?>
